@@ -35,221 +35,149 @@
 
   
 
-      <table *ngIf ="reservations" >
+      <table *ngIf ="reservations" style="border: 3px solid silver;">
         <th *ngFor = "let column of headers">
-          <div style="width:80px;height:40px;background-color:rgb(235, 243, 130);" *ngIf="my_plan === 'true'" > <p style="text-align: center">   {{column}} </p> </div>
+          <div style="border: 1px solid silver;width:80px;height:40px;background-color:rgb(235, 243, 130);" *ngIf="my_plan === 'true'" > <p style="text-align: center">   {{column}} </p> </div>
         </th>
-
+        
         <tr *ngFor ="let i of rowIndexArray ; "> 
-      
-         
-          <div style="width:80px;height:40px;background-color:rgb(235, 243, 130);" *ngIf="my_plan === 'true' " > Rangée {{i+1}} </div>
-             
-           <td *ngIf="reservations[9*i]">
-               
+          <div style="border: 1px solid silver; width:80px;height:40px;background-color:rgb(235, 243, 130);" *ngIf="my_plan === 'true' " > Rangée {{i+1}} </div>
             
-            
-              
-            <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-               *ngIf="reservations[9*i].status === 'libre' " >
-              
-               <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-               class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i].id)">
-                  book :{{reservations[9*i].id}} 
-                   </button>
-   
-                </div>
-                <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                *ngIf="reservations[9*i].status === 'réservé'" >
-               
-               
-                <p> booked :{{reservations[9*i].id}} </p>
-                  
-   
-                 </div>
+            <td *ngIf="reservations[9*i]">
+              <div *ngIf="reservations[9*i].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i].id)">
+                    book :{{reservations[9*i].id}} 
+                  </button>
+              </div>   
+              <div *ngIf="reservations[9*i].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i].id)">
+                  booked :{{reservations[9*i].id}} 
+                </button>
+              </div>
             </td>
-   
+
             <td *ngIf="reservations[9*i+1]">
+              <div *ngIf="reservations[9*i+1].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+1].id)">
+                    book :{{reservations[9*i+1].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+1].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+1].id)">
+                  booked :{{reservations[9*i+1].id}} 
+                </button>
+              </div>
+            </td>
 
-             
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+1].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+1].id)">
-                   book :{{reservations[9*i+1].id}} 
-                    </button>
-    
-                 </div>
-                 
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+1].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+1].id}} </p>
-                   
-    
-                  </div>
-             </td>
-     
-             <td *ngIf="reservations[9*i+2]">
+            <td *ngIf="reservations[9*i+2]">
+              <div *ngIf="reservations[9*i+2].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+2].id)">
+                    book :{{reservations[9*i+2].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+2].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+2].id)">
+                  booked :{{reservations[9*i+2].id}} 
+                </button>
+              </div>
+            </td>
 
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+2].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+2].id)">
-                   book :{{reservations[9*i+2].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+2].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+2].id}} </p>
-                   
-    
-                  </div>
-             </td>
-             <td *ngIf="reservations[9*i+3]">
-               
-  
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+3].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+3].id)">
-                   book :{{reservations[9*i+3].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+3].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+3].id}} </p>
-                   
-    
-                  </div>
-             </td>
-   
-             <td *ngIf="reservations[9*i+4]">
-               
-               
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+4].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+4].id)">
-                   book :{{reservations[9*i+4].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+4].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+4].id}} </p>
-                   
-    
-                  </div>
-             </td>
-   
-             <td *ngIf="reservations[9*i+5]">
-               
-              
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+5].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+5].id)">
-                   book :{{reservations[9*i+5].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+5].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+5].id}} </p>
-                   
-    
-                  </div>
-             </td>
-             <td *ngIf="reservations[9*i+6]">
-               
-              
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+6].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+6].id)">
-                   book :{{reservations[9*i+6].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+6].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+6].id}} </p>
-                   
-    
-                  </div>
-             </td>
-   
-   
-             <td *ngIf="reservations[9*i+7]">
-               
-              
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+7].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+7].id)">
-                   book :{{reservations[9*i+7].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+7].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+7].id}} </p>
-                   
-    
-                  </div>
-             </td>
-   
-             <td *ngIf="reservations[9*i+8]">
-               
-             
-               
-                <div style="width:80px;height:40px;background-color:rgb(0, 255, 191);" 
-                *ngIf="reservations[9*i+8].status === 'libre'" >
-               
-                <button style="width:80px;height:40px;background-color:rgb(0, 255, 191);"
-                 class="btn-outline-sucess" [disabled]="bookerror === 'true'" (click)="onBookSeat(reservations[9*i+8].id)">
-                   book :{{reservations[9*i+8].id}}
-                    </button>
-    
-                 </div>
-                 <div style="width:80px;height:40px;background-color:rgb(255, 0, 0);" 
-                 *ngIf="reservations[9*i+8].status === 'réservé'" >
-                
-                
-                 <p> booked :{{reservations[9*i+8].id}} </p>
-                   
-    
-                  </div>
-             </td>
+            <td *ngIf="reservations[9*i+3]">
+              <div *ngIf="reservations[9*i+3].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+3].id)">
+                    book :{{reservations[9*i+3].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+3].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+3].id)">
+                  booked :{{reservations[9*i+3].id}} 
+                </button>
+              </div>
+            </td>
+
+            <td *ngIf="reservations[9*i+4]">
+              <div *ngIf="reservations[9*i+4].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+4].id)">
+                    book :{{reservations[9*i+4].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+4].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+4].id)">
+                  booked :{{reservations[9*i+4].id}} 
+                </button>
+              </div>
+            </td>
+
+            <td *ngIf="reservations[9*i+5]">
+              <div *ngIf="reservations[9*i+5].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+5].id)">
+                    book :{{reservations[9*i+5].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+5].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+5].id)">
+                  booked :{{reservations[9*i+5].id}} 
+                </button>
+              </div>
+            </td>
+
+            <td *ngIf="reservations[9*i+6]">
+              <div *ngIf="reservations[9*i+6].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+6].id)">
+                    book :{{reservations[9*i+6].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+6].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+6].id)">
+                  booked :{{reservations[9*i+6].id}} 
+                </button>
+              </div>
+            </td>
+
+            <td *ngIf="reservations[9*i+7]">
+              <div *ngIf="reservations[9*i+7].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+7].id)">
+                    book :{{reservations[9*i+7].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+7].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+7].id)">
+                  booked :{{reservations[9*i+7].id}} 
+                </button>
+              </div>
+            </td>
+
+            <td *ngIf="reservations[9*i+8]">
+              <div *ngIf="reservations[9*i+8].status === 'libre' " >
+                <button class="bfree" [disabled]="bookerror === 'true'" 
+                    (click)="onBookSeat(reservations[9*i+8].id)">
+                    book :{{reservations[9*i+8].id}} 
+                  </button>
+              </div>
+              <div *ngIf="reservations[9*i+8].status === 'réservé'" >
+                <button class="bbooked" [disabled]="bookerror === 'true'" 
+                (click)="onFreeSeat(reservations[9*i+8].id)">
+                  booked :{{reservations[9*i+8].id}} 
+                </button>
+              </div>
+            </td>
+           
    
        </tr>
 
@@ -264,7 +192,7 @@
       <button class="button button2"  (click)="OnRAZ()">Plan de la salle (option booking désactivée)</button> 
     </div>
     <div>           
-      <button class="button button2"  (click)="OnRAZ1()">Plan de la salle (option booking activée)</button> 
+      <button class="button button2"  (click)="OnRAZ1()">Plan de la salle (passer de book à booked et inversement )</button> 
     </div>
 <div>
       <button class="button button2" (click)="onBook()">Tout réserver </button>
