@@ -108,7 +108,7 @@ bookOnOne(index: number){
 	this.emitReservationSubject();
 }
 freeOnOne(index: number){
-	this.Reservations[index].status='libre';
+	this.Reservations[index-1].status='libre';
 	this.emitReservationSubject();
 }
 addReservation(name: string, status: string){
