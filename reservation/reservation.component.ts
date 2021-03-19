@@ -21,7 +21,7 @@ status : string = 'false'
   bookerror : string = 'true';
 
   my_plan : string = 'false';
-
+compteur :number = 0;
 
 
   my_flag : boolean = false;
@@ -99,6 +99,7 @@ initForm (){
      
      //parcours la table réservations et filtre sur la tranche [37-45] && 'libre'
 this.place_libre = this.reservations.length;
+
 //place_libre = Nb_place libre
 
 
@@ -109,27 +110,38 @@ this.my_flag = status
 if (new_order > this.place_libre) {
   this.bookerror = 'true' ;
   
-}else if(this.my_flag && (new_order  > 0)){
-  new_order = new_order - 1
-  console.log("this.new_order > 1")
-  console.log(new_order)
+} else if (new_order <= this.place_libre && (new_order > 0)) {
+  
+  this.bookerror = 'false' ;
+  this.my_flag = true;
+  new_order = new_order-1
+  this.compteur = this.compteur + 1
+  console.log("-----")
+  console.log("this.compteur")
+  console.log(this.compteur)
+  console.log("new_orderinitialisation");
+  console.log(new_order);
+  console.log("place libre initialisation");
+
+  console.log(this.place_libre);
+  console.log("-----")
+}else if (this.my_flag && (new_order == 0)){
+  this.my_flag = false;
+  this.bookerror = 'true' ;
+  console.log("this.my_flag ==0 ");
+  console.log(this.my_flag);
+ 
+console.log("new_orderinitialisation ==0 ");
+  console.log(new_order);
+
+} else if (new_order == 0){
+  this.my_flag = false;
+  this.bookerror = 'false' ;
 
 } 
 
-if ( this.my_flag && (new_order == 0))
-{
-  this.my_flag =false;
-  this.bookerror = 'true' ;
-  console.log("stop 2");
-  console.log(this.bookerror);
-  console.log("new order stop 2");
-  console.log(new_order);
-}
 
-if (new_order <= this.place_libre) {
-  this.bookerror = 'false' ;
-  this.my_flag = true;
-  
+
   /**-- 
   affiche les places disponibles 
   active tous les boutons de booking **/
@@ -155,7 +167,7 @@ et qui doit s'arrêter quand le compteur arrive à zéro CAD : nombre de places 
      message apparaît 'stop' mais les sièges restantes ne sont pas revérouillées :-( magré le changement de flag
      */
 
-}
+
 
 /** 
 
